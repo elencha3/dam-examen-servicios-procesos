@@ -1,3 +1,4 @@
+import { LoginService } from './../../services/login.service';
 import { RegisterModel } from './../../models/register.model';
 import { Component, OnInit } from '@angular/core';
 import {
@@ -17,7 +18,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   sent: boolean = false;
 
-  constructor(private formbuilder: FormBuilder, private route: Router) {}
+  constructor(private formbuilder: FormBuilder, private router: Router, private loginService: LoginService) {}
   mustMatchValidator: ValidatorFn = (
     control: AbstractControl
   ): ValidationErrors | null => {
@@ -30,7 +31,7 @@ export class RegisterComponent implements OnInit {
   registerForm = this.formbuilder.group(
     {
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password:['', Validators.required],
       passwordConfirmation: [''],
       company: ['', Validators.required],
       name: ['', Validators.required],
@@ -54,8 +55,15 @@ export class RegisterComponent implements OnInit {
         this.registerForm.value.experience,
         this.registerForm.value.dni,
       );
-      console.log(user)
-      this.route.navigate(['/home'])
+        this.loginService.registerUser(user).subscribe( response =>{
+          console.log(JSON.stringify(response));
+          this.router.navigate(['/login'])
+        },
+        error =>{
+          console.log(error)
+        }
+        )
+
     }
   }
 
