@@ -1,0 +1,56 @@
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card bg-dark text-white" style="border-radius: 1rem;">
+        <div class="card-body p-5 text-center">
+          <div class="mb-md-5 mt-md-4 pb-2">
+            <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+            <p class="text-white-50 mb-4">Introduce tu usuario y tu contraseña</p>
+            <form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+
+              <!--EMAIL-->
+              <div class="form-outline form-white mb-4">
+                <label for="nombre" class="form-label">Usuario *</label>
+                <input id="nombre" type="text" name="nombre" formControlName="username"
+                  class="fields form-control font-weight-bold is-invalid" [ngClass]="{
+                    'is-invalid': this.sent && this.loginForm.controls.username.errors
+                  }">
+                <!--Validation-->
+                <div class="invalid-feedback" *ngIf="sent && this.loginForm.controls.username.errors?.required">¡Tienes
+                  que rellenar este campo!</div>
+                <div class="invalid-feedback" *ngIf="sent && this.loginForm.controls.username.errors?.email">¡Esto no es
+                  un email!
+                </div>
+              </div>
+
+              <!--PASSWORD-->
+              <div class=" form-outline form-white mb-4">
+                <label for="pass" class="form-label">Contraseña *</label>
+                <input id="pass" type="password" name="pass" formControlName="password"
+                  class="fields form-control font-weight-bold" [ngClass]="{
+                    'is-invalid':this.sent && this.loginForm.controls.password.errors
+                  }">
+
+                <!--Validation-->
+                <div class="invalid-feedback" *ngIf=" sent && this.loginForm.controls.password.errors?.required">¡Tienes
+                  que rellenar este campo!</div>
+
+              </div>
+              <!-- <div class="form-outline form-white mb-4 form-check checkbox">
+                              <input type="checkbox" id="check" class="form-check-input " name="check"
+                                  formControlName="check">
+                              <label class="form-check-label" for="check">
+                                  Recordarme
+                              </label>
+                          </div> -->
+              <button class="btn btn-outline-light btn-lg px-5 text-uppercase" type="submit" value="enviar">
+                <span class="spinner-border spinner-border-sm mr-1" *ngIf="isLoading"></span>
+                Login</button>
+              <div *ngIf="errorMsg" class="alert alert-danger text-center m-3 ">{{errorMsg}}</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

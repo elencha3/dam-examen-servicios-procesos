@@ -1,0 +1,27 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" [routerLink]="['/home']">MyWeb</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/home']" *ngIf="hayUsuario()">Home <span class="sr-only">Home</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/imagenes']">Imágenes</a>
+      </li>
+    </ul>
+    <button class="btn btn-outline-info my-2 my-sm-0" type="submit" [routerLink]="['/login']" *ngIf="!hayUsuario()" >Login</button>
+    <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" [routerLink]="['/login']" *ngIf="hayUsuario()" (click)="logout()" >Logout</button>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>
+<div class="footer mt-auto py-3 text-center">
+  Made by Esther Lenador
+</div>
