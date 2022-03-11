@@ -24,6 +24,7 @@ export class LoginService {
     this.login = this.loginModelBehaviourSubject.asObservable();
   }
 
+  //LOGIN
   performLogin(entrada: LoginModel): Observable<LoginModel> {
     console.log('performLogin(' + JSON.stringify(entrada) + ')');
 
@@ -48,5 +49,13 @@ export class LoginService {
 
   registerUser(user: RegisterModel): Observable<RegisterModel> {
     return this.http.post<RegisterModel>(environment.register, user);
+  }
+
+  //GET USERS
+
+  getUser(id: string): Observable<any> {
+
+    let url =`${environment.user}/${id}`;
+    return this.http.get(url)
   }
 }

@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.divcenter {
+  max-width: 70rem;
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  background-color: white;
+  opacity: 0.9;
+  padding: 2rem;
+
+}

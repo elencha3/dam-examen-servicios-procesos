@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   login: 'https://reqres.in/api/login',
-  register: 'https://reqres.in/api/register'
+  register: 'https://reqres.in/api/register',
+  user: 'https://reqres.in/api/users/'
 };
 
 /*
