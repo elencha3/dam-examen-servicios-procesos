@@ -47,6 +47,8 @@
                 <span class="spinner-border spinner-border-sm mr-1" *ngIf="isLoading"></span>
                 Login</button>
               <div *ngIf="errorMsg" class="alert alert-danger text-center m-3 ">{{errorMsg}}</div>
+              <button class="btn btn-outline-light btn-info btn-lg px-5 text-uppercase mt-3" type="submit" value="enviar" [routerLink]="['/register']> Registrarse </button>
+
             </form>
           </div>
         </div>

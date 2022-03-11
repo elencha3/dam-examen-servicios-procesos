@@ -18,7 +18,7 @@ export class AppComponent {
     })
   }
 
-  hayUsuario() {
+  isLogged() {
     return this.user != null;
   }
 
