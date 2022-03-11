@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 const LOGIN_KEY = 'login';
+const REGISTER_KEY = 'register'
 
 @Injectable({
   providedIn: 'root',
@@ -17,11 +18,19 @@ export class LoginService {
   private loginModelBehaviourSubject: BehaviorSubject<LoginModel | null>;
   public login: Observable<LoginModel | null>;
 
+  private registerModelBehaviourSubject: BehaviorSubject<any | null>;
+
+  public register : Observable<any|null>;
+
   constructor(private http: HttpClient, private route: Router) {
     this.loginModelBehaviourSubject = new BehaviorSubject<LoginModel | null>(
       JSON.parse(<string>localStorage.getItem(LOGIN_KEY))
     );
     this.login = this.loginModelBehaviourSubject.asObservable();
+    this.registerModelBehaviourSubject = new BehaviorSubject<RegisterModel | null>(
+      JSON.parse(<string>localStorage.getItem(REGISTER_KEY))
+    );
+    this.register = this.registerModelBehaviourSubject.asObservable();
   }
 
   //LOGIN
@@ -47,13 +56,18 @@ export class LoginService {
 
   //REGISTER
 
-  registerUser(user: RegisterModel): Observable<RegisterModel> {
-    return this.http.post<RegisterModel>(environment.register, user);
+  registerUser(user: RegisterModel): Observable<any> {
+    return this.http.post<RegisterModel>(environment.register, user).pipe(map((apiResponse) => {
+      console.log('Register ok' + JSON.stringify(apiResponse));
+        this.registerModelBehaviourSubject.next(apiResponse);
+        localStorage.setItem(REGISTER_KEY, JSON.stringify(apiResponse));
+        return apiResponse;
+    }))
   }
 
   //GET USERS
 
-  getUser(id: string): Observable<any> {
+  getUser(id: number | null): Observable<any> {
 
     let url =`${environment.user}/${id}`;
     return this.http.get(url)
