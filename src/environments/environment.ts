@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  login: 'https://reqres.in/api/login'
+  login: 'https://reqres.in/api/login',
+  register: 'https://reqres.in/api/register'
 };
 
 /*

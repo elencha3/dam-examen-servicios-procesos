@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { LoginService } from './../../services/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private loginService: LoginService)
+    private loginService: LoginService,
+    private router: Router)
     {
     this.loginForm = this.formBuilder.group({
       username: ['', [Validators.required, Validators.email]],
@@ -47,14 +49,15 @@ export class LoginComponent implements OnInit {
       console.log(JSON.stringify(response));
       this.isLoading = false;
       this.errorMsg = null;
+      this.router.navigate(['/home'])
     }, error => {
       this.errorMsg = `⚠ El usuario no existe (${error.error?.error})`
       this.isLoading = false;
     },
     () => {
       this.isLoading = false;
+      this.router.navigate(['/home'])
     })
-
   }
 
 }

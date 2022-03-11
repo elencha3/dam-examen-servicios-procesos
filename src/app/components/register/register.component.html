@@ -1,1 +1,129 @@
-<p>register works!</p>
+<div class="container divcenter ">
+  <div class="row">
+      <div class="col-md-12 text-center">
+          <h1>Regsitro</h1>
+      </div>
+  </div>
+  <div class="row divcenter">
+      <form [formGroup]="this.registerForm" (ngSubmit)="doPerformSubmit();">
+          <div class="col-md-12">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email*</label>
+              <input id="email" type="email"
+              name="email"
+              placeholder="Introduce tu email"
+              required = "required"
+              data-error = "El email es obligatorio"
+              formControlName = "email"
+              class="form-control"
+              [ngClass] = "{
+                'is-invalid': this.sent && this.registerForm.controls.name.errors
+            }">
+            <div class="invalid-feedback" *ngIf="this.sent && this.registerForm.controls.email.errors?.required">El campo email es requerido</div>
+            <div class="invalid-feedback" *ngIf="this.sent && this.registerForm.controls.email.errors?.email">Debe introducir un email válido</div>
+          </div>
+          <div class="mb-3">
+                  <label for="pass" class="form-label">Contraseña*</label>
+                  <input  id="pass" type="password"
+                  name = "password"
+                  required = "required"
+                  data-error = "La contraseña es obligatoria"
+                  formControlName = "password"
+                  class = "form-control"
+                  [ngClass] = "{
+                    'is-invalid': this.sent && this.registerForm.controls.password.errors
+                }">
+                  <small id="passHelp" class="form-text text-muted">La contraseña debe tener al menos 8 caracteres</small>
+                  <div class="invalid-feedback" *ngIf="this.sent && this.registerForm.controls.password.errors?.required">La contraseña es obligatoria</div>
+                  <div class="invalid-feedback" *ngIf="this.sent && this.registerForm.controls.password.errors?.minlength">Debe tener al menos 8 caracteres</div>
+
+              </div>
+              <div class="mb-3">
+                  <label for="passConfirm" class="form-label">Repetir Contraseña*</label>
+                  <input  id="passConfirm" type="password"
+                  name = "passwordConfirmation"
+                  formControlName = "passwordConfirmation"
+                  class = "form-control"
+                  >
+                  <div *ngIf=" this.sent && registerForm.errors?.noMatch" class="cross-validation-error-message alert alert-danger mt-1">
+                    Las contraseñas deben coincidir.
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="company" class="form-label">Empresa*</label>
+                <input id="company" type="company"
+                name="empresa"
+                placeholder="Introduce el nombre de la empresa"
+                required = "required"
+                data-error = "El nombre de la empresa es obligatorio"
+                formControlName = "company"
+                class="form-control"
+                [ngClass] = "{
+                  'is-invalid': this.sent && this.registerForm.controls.company.errors
+              }">
+              <div class="invalid-feedback" *ngIf="this.sent && this.registerForm.controls.company.errors?.required">El campo teléfono es requerido</div>
+            </div>
+              <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre* </label>
+                  <input id="nombre" type="text"
+                  name="nombre"
+                  placeholder="Introduce tu nombre"
+                  required = "required"
+                  data-error = "El nombre es obligatorio"
+                  formControlName = "name"
+                  class="form-control is-invalid"
+                  [ngClass] = "{
+                    'is-invalid': this.sent && this.registerForm.controls.name.errors
+                }">
+                <div class="invalid-feedback" *ngIf="this.sent && this.registerForm.controls.name.errors?.required">El campo nombre es requerido</div>
+              </div>
+              <div class="mb-3">
+                  <label for="apellidos" class="form-label">Apellidos*</label>
+                  <input id="apellidos" type="text"
+                  name="apellidos"
+                  placeholder="Introduce tus apellidos"
+                  required = "required"
+                  data-error = "Al menos un apellido es obligatorio"
+                  formControlName = "surname"
+                  class="form-control is-invalid"
+                  [ngClass] = "{
+                    'is-invalid': this.sent && this.registerForm.controls.surname.errors
+                }">
+                <div class="invalid-feedback" *ngIf="this.sent && this.registerForm.controls.surname.errors?.required">El campo apellidos es requerido</div>
+              </div>
+
+
+              <div class="mb-3">
+                  <label for="experience" class="form-label">Experiencia*</label>
+                  <input id="experience" type="text"
+                  name = "experience"
+                  placeholder="5 "
+                  formControlName = "experience"
+                  class = "form-control"
+                  [ngClass] = "{
+                    'is-invalid': this.sent && this.registerForm.controls.experience.errors
+                }">
+                <div class="invalid-feedback" *ngIf="this.sent && this.registerForm.controls.experience.errors?.required">El campo experiencia es requerido</div>
+
+              </div>
+              <div class="mb-3">
+                  <label for="dni" class="form-label">DNI*</label>
+                  <input id="dni" type="text"
+                  name = "dni"
+                  placeholder="DNI"
+                  formControlName = "dni"
+                  class = "form-control"
+                  [ngClass] = "{
+                    'is-invalid': this.sent && this.registerForm.controls.dni.errors
+                }">
+                <div class="invalid-feedback" *ngIf="this.sent && this.registerForm.controls.dni.errors?.required">El campo dni es requerido</div>
+              </div>
+              <div class="text-center">
+                  <button type="submit"
+                  class="btn btn-primary"
+                  value="enviar" >Registrarse</button>
+              </div>
+          </div>
+      </form>
+  </div>
+</div>

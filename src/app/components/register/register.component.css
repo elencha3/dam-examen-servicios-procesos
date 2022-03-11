@@ -1,0 +1,12 @@
+.divcenter {
+  max-width: 70rem;
+  display: block;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  background-color: white;
+  opacity: 0.9;
+  padding: 2rem;
+
+}
